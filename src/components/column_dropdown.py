@@ -9,7 +9,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
 
     return html.Div(
         children=[
-            html.H6("Parameter Selection"),
+            html.H6("Columns Selection"),
             dcc.Dropdown(
                 id=ids.COLUMNS_SELECTION_DROPDOWN,
                 options=to_dropdown_options(source.all_columns),

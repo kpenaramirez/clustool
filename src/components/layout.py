@@ -1,6 +1,9 @@
 from dash import Dash, html
 from src.components import (
     column_dropdown,
+    preproc_selector,
+    clustering_selector,
+    run_button,
 )
 
 from ..data.source import DataSource
@@ -12,12 +15,30 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
         children=[
             html.H1(app.title),
             html.Hr(),
-            html.Div(
-                className="dropdown-container",
-                children=[
-                    column_dropdown.render(app, source),
-                    
-                ],
-            ),
+            column_dropdown.render(app, source),
+            preproc_selector.render(app, source),
+            clustering_selector.render(app, source),
+            run_button.render(app, source),
+            # html.Div(
+            #     className="preproc-container",
+            #     children=[
+            #         preproc_selector.render(app, source),
+            #     ],
+            # ),
+            # html.Div(
+            #     className="cluster-container",
+            #     children=[
+            #         # Dropdown 
+            #         # clustering options
+            #     ],
+            # ),
+            # # Button start
+            # html.Div(
+            #     className="results-container",
+            #     children=[
+            #         # Scatter plot 1
+            #         # Scatter plot 2
+            #     ]
+            # )            
         ],
     )

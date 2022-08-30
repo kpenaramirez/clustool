@@ -1,5 +1,5 @@
-from http.client import PROCESSING
-
-
 COLUMNS_SELECTION_DROPDOWN = 'columns-selection-dropdown'
-PROCESSING_DROPDOWN = 'processing-dropdown'
+PREPROC_MULTI_DROPDOWN = 'preproc-multi-dropdown'
+CLUSTERING_DROPDOWN = 'clustering-dropdown'
+RUN_BUTTON = 'run-button'
+TEST_TEXT_BUTTON = 'test-text-button'
