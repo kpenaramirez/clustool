@@ -13,7 +13,7 @@ PREPROCESSORS = {
 }
 
 CLUSTERERS = {
-    "K-Means": kmeans_,
+    "KMeans": kmeans_,
     "DBSCAN": dbscan_,
     "OPTICS": optics_,
     "HDBSCAN": hdbscan_,

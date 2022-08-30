@@ -16,9 +16,13 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
             html.H1(app.title),
             html.Hr(),
             column_dropdown.render(app, source),
+            html.Hr(),
             preproc_selector.render(app, source),
+            html.Hr(),
             clustering_selector.render(app, source),
+            html.Hr(),
             run_button.render(app, source),
+            html.Hr(),
             # html.Div(
             #     className="preproc-container",
             #     children=[

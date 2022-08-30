@@ -44,7 +44,7 @@ class CSMParams(Enum):
 def hdbscan_(
     data: np.ndarray,
     min_cluster_size: int = 3,
-    min_samples: int | None = None,
+    min_samples: int = 0,
     cluster_selection_method: CSMParams = CSMParams.EOM,  # "eom" or "leaf"
 ) -> np.ndarray:
     """Apply HDBSCAN to the data."""
