@@ -26,7 +26,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
     
     return html.Div(
         children=[
-            html.H6("Preprocessing algorithms"),
+            html.H5("Preprocessing algorithms"),
             dcc.Dropdown(
                 id=ids.CLUSTERING_DROPDOWN,
                 options=to_dropdown_options_proc(CLUSTERERS),

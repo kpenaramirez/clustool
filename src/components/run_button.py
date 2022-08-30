@@ -19,10 +19,11 @@ def render(app: Dash, source: DataSource) -> html.Div:
 
     return html.Div(
         children=[
-            html.H6("Run clustering"),
+            html.H5("Run clustering"),
             html.Button(
                 "Run",
                 id=ids.RUN_BUTTON,
+                className="btn btn-primary"
             ),
             html.Div(
                 id=ids.TEST_TEXT_BUTTON,

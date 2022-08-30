@@ -28,12 +28,14 @@ def generate_params_divs(function_names: list[str]) -> html.Div:
                     type="number",
                     placeholder=f"Integer",
                     value=pdefaultvalue,
+                    className="form-control",
                 )
             elif ptype is float:
                 component = dcc.Input(
                     type="number",
                     placeholder=f"Float",
                     value=pdefaultvalue,
+                    className="form-control",
                 )
             elif issubclass(ptype, Enum):
                 component = dcc.Dropdown(
