@@ -26,7 +26,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
             x=xcol,
             y=ycol,
             color="result",
-            opacity=0.3,
+            opacity=0.7,
         )
 
     return html.Div(
