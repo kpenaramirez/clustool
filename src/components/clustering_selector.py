@@ -19,7 +19,6 @@ def render(app: Dash, source: DataSource) -> html.Div:
         if clustering_selection is None:
             return html.Div()
 
-        print(clustering_selection)
         components = generate_params_divs([clustering_selection])
 
         return html.Div(components)
