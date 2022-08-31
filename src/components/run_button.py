@@ -11,11 +11,30 @@ def render(app: Dash, source: DataSource) -> html.Div:
     @app.callback(
         Output(ids.TEST_TEXT_BUTTON, "children"),
         Input(ids.RUN_BUTTON, "n_clicks"),
-        State(ids.COLUMNS_SELECTION_DROPDOWN, "value")
+        State(ids.COLUMNS_SELECTION_DROPDOWN, "value"),
+        State(ids.PREPROC_MULTI_DROPDOWN, "value"),
+        State(ids.CLUSTERING_DROPDOWN, "value"),
+        State(ids.CLUSTERING_PARAMS_DIV, "children"),
     )
-    def press_button(n_clicks: int, columns:list[str],) -> str:
-        if n_clicks:
-            return f"Selected columns: {[c for c in columns]}"
+    def press_button(
+        n_clicks: int,
+        columns:list[str],
+        preproc_selection: list[str],
+        clustering_selection: str,
+        x,
+    ) -> str:
+        if n_clicks and columns and preproc_selection and clustering_selection:
+            text = (
+                f"Selected columns: {[c for c in columns]} "
+                f"Selected preprocessing: {[p for p in preproc_selection]} "
+                f"Selected clustering: {clustering_selection} "
+                # f"x={x}"
+            )
+            
+        else:
+            text = "Please select all the options"
+            
+        return text
 
     return html.Div(
         children=[
