@@ -1,4 +1,4 @@
-from .preprocesors import standar_scaler, dim_reduction_pca
+from .preprocesors import standar_scaler
 
 from .clusterers import (
     kmeans_,
@@ -9,7 +9,6 @@ from .clusterers import (
 
 PREPROCESSORS = {
     "Standar Scaler": standar_scaler,
-    "DimRed PCA": dim_reduction_pca,
 }
 
 CLUSTERERS = {

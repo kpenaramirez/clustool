@@ -4,6 +4,7 @@ from src.components import (
     preproc_selector,
     clustering_selector,
     run_button,
+    scatter_graph,
 )
 
 from ..data.source import DataSource
@@ -23,6 +24,7 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
             html.Hr(),
             run_button.render(app, source),
             html.Hr(),
+            scatter_graph.render(app, source),
             # html.Div(
             #     className="preproc-container",
             #     children=[

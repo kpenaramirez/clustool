@@ -29,6 +29,7 @@ def generate_params_divs(function_names: list[str]) -> html.Div:
                     placeholder=f"Integer",
                     value=pdefaultvalue,
                     className="form-control",
+                    required=True,
                 )
             elif ptype is float:
                 component = dcc.Input(
@@ -37,6 +38,7 @@ def generate_params_divs(function_names: list[str]) -> html.Div:
                     value=pdefaultvalue,
                     className="form-control",
                     step=0.01,
+                    required=True,
                 )
             elif issubclass(ptype, Enum):
                 component = dcc.Dropdown(

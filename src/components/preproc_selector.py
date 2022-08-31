@@ -15,15 +15,15 @@ from ..processing import PREPROCESSORS
 def render(app: Dash, source: DataSource) -> html.Div:
     @app.callback(
         Output(ids.PREPROC_PARAMS_DIV, "children"),
-        Input(ids.PREPROC_MULTI_DROPDOWN, "value"),
+        Input(ids.PREPROC_DROPDOWN, "value"),
     )
-    def update_preprocessing_params(preproc_selection: list[str]) -> html.Div:
+    def update_preprocessing_params(preproc_selection: str) -> html.Div:
         """Update the corresponding list of parameters for each preprocessor function"""
 
         if preproc_selection is None:
             return html.Div()
 
-        components = generate_params_divs(preproc_selection)
+        components = generate_params_divs([preproc_selection])
 
         return html.Div(components)
 
@@ -31,9 +31,9 @@ def render(app: Dash, source: DataSource) -> html.Div:
         children=[
             html.H5("Preprocessing algorithms"),
             dcc.Dropdown(
-                id=ids.PREPROC_MULTI_DROPDOWN,
+                id=ids.PREPROC_DROPDOWN,
                 options=to_dropdown_options_proc(PREPROCESSORS),
-                multi=True,
+                multi=False,
                 placeholder="None",
             ),
             html.Div(

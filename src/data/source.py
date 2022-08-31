@@ -17,10 +17,11 @@ def compose(*functions: Processor) -> Processor:
 @dataclass
 class DataSource:
     _data: pd.DataFrame
-    _selected_cols: list[str] = field(init=False)
+    _cols: list[str] = field(init=False)
 
     def __post_init__(self):
-        self._selected_cols = list(self._data.columns)
+        self._cols = list(self._data.columns)
+        self._data["result"] = -1
 
     def _filter_dataframe(self, columns: list[str]) -> pd.DataFrame:
         """Filter the dataframe including selected columns and remove rows that contain NaN"""
@@ -30,17 +31,20 @@ class DataSource:
 
         return df
     
-    def process(self, *functions: Processor)-> DataSource:
+    def process(self, columns: list[str], *functions: Processor)-> None:
         """Process the data using the functions in the same order as provided"""
 
-        preproc_df = self._filter_dataframe(self._selected_cols)
+        preproc_df = self._filter_dataframe(columns)
         processor = compose(*functions)
-        result = processor(preproc_df.values)
-        preproc_df["result"] = result
-        return DataSource(preproc_df)
+        result = processor(preproc_df.to_numpy())
+        self._data.loc[preproc_df.index.values, "result"] = result
 
 
     @property
     def all_columns(self) -> list[str]:
-        return list(self._data.columns)
+        return self._cols
+
+    @property
+    def get_data(self) -> pd.DataFrame:
+        return self._data.copy()
 

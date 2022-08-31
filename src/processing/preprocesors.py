@@ -1,11 +1,9 @@
-from dataclasses import dataclass
 import numpy as np
-
-from dataclasses import dataclass
-
-from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
+"""
+Preprocessing functions. No parameters allowed! 
+"""
 
 class NanValueEncounterError(Exception):
     pass
@@ -23,15 +21,3 @@ def standar_scaler(data: np.ndarray) -> np.ndarray:
         )
 
     return scaled_data
-
-
-def dim_reduction_pca(data: np.ndarray, n_components: int = 3) -> np.ndarray:
-    """Apply PCA to the data."""
-
-    pca = PCA(n_components=n_components).fit(data)
-    reduced_data = pca.transform(data)
-
-    if np.any(np.isnan(reduced_data)):
-        raise NanValueEncounterError("PCA produced NaN values. Check your data")
-
-    return reduced_data
