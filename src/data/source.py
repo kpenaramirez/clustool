@@ -33,7 +33,8 @@ class DataSource:
     
     def process(self, columns: list[str], *functions: Processor)-> None:
         """Process the data using the functions in the same order as provided"""
-
+        
+        self._data["result"] = -1  # reset results
         preproc_df = self._filter_dataframe(columns)
         processor = compose(*functions)
         result = processor(preproc_df.to_numpy())

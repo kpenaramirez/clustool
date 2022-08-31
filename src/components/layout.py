@@ -1,11 +1,14 @@
 from dash import Dash, html
 from src.components import (
     column_dropdown,
+    ids,
     preproc_selector,
     clustering_selector,
     run_button,
-    scatter_graph,
+    scatter_graph_l,
+    scatter_graph_r,
 )
+
 
 from ..data.source import DataSource
 
@@ -16,21 +19,26 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
         children=[
             html.H1(app.title),
             html.Hr(),
-            column_dropdown.render(app, source),
+            html.Div(
+                className="dropdown-container",
+                children=[
+                    column_dropdown.render(app, source),
+                    preproc_selector.render(app, source),
+                    clustering_selector.render(app, source),
+                    run_button.render(app, source),
+                ],
+            ),
             html.Hr(),
-            preproc_selector.render(app, source),
-            html.Hr(),
-            clustering_selector.render(app, source),
-            html.Hr(),
-            run_button.render(app, source),
-            html.Hr(),
-            scatter_graph.render(app, source),
-            # html.Div(
-            #     className="preproc-container",
-            #     children=[
-            #         preproc_selector.render(app, source),
-            #     ],
-            # ),
+            html.H5("Plot"),
+            html.Button("Plot", id=ids.PLOT_BUTTON, className="btn btn-secondary"),
+            html.Div(
+                className="graph-container",
+                children=[
+                    scatter_graph_l.render(app, source),
+                    scatter_graph_r.render(app, source),
+                ],
+            ),
+            
             # html.Div(
             #     className="cluster-container",
             #     children=[
