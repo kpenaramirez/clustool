@@ -14,7 +14,7 @@ def kmeans_(data: np.ndarray, n_clusters: int = 3) -> np.ndarray:
     return labels
 
 
-def dbscan_(data: np.ndarray, eps: int = 0.5, min_samples: int = 5) -> np.ndarray:
+def dbscan_(data: np.ndarray, eps: float = 0.5, min_samples: int = 5) -> np.ndarray:
     """Apply DBSCAN to the data."""
 
     clusterer = cluster.DBSCAN(eps=eps, min_samples=min_samples).fit(data)
