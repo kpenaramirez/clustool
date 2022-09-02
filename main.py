@@ -8,19 +8,24 @@ from src.data.source import DataSource
 DATA_PATH = "./data/sample_data.csv"
 
 
+
 def main() -> None:
 
     # load the data and create the data manager
     data = load_input_data(DATA_PATH)
     data = DataSource(data)
-
     app = Dash(
+        __name__,
         external_stylesheets=[BOOTSTRAP],
     )
+    
     app.title = "Clustering tool"
     app.layout = create_layout(app, data)
-    app.run()
 
+    return app
+
+app = main()
+server = app.server
 
 if __name__ == "__main__":
-    main()
+    app.run_server(host="0.0.0.0", port=8050)
