@@ -32,6 +32,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
         children=[
             dcc.Graph(
                 id=ids.SCATTER_GRAPH_R,
+                style={'width': '45vh', 'height': '45vh'}
             ),
             html.Div("Select axis"),
             dcc.Dropdown(
