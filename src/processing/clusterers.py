@@ -25,12 +25,13 @@ def dbscan_(data: np.ndarray, eps: float = 0.5, min_samples: int = 5) -> np.ndar
 
 def optics_(
     data: np.ndarray,
-    min_samples: int = 5,  # int > 1
+    min_samples: int = 5,
     xi: float = 0.05,  # float between 0 and 1
+    min_cluster_size: float = 0.05, 
 ) -> np.ndarray:
     """Apply OPTICS to the data."""
 
-    clusterer = cluster.OPTICS(min_samples=min_samples, xi=xi).fit(data)
+    clusterer = cluster.OPTICS(min_samples=min_samples, xi=xi, min_cluster_size=min_cluster_size).fit(data)
     labels = clusterer.labels_
 
     return labels

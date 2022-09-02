@@ -15,7 +15,7 @@ PREPROCESSORS = {
 CLUSTERERS = {
     "KMeans": kmeans_,
     "DBSCAN": dbscan_,
-    # "OPTICS": optics_,  # it takes too long
+    "OPTICS": optics_,  # it takes too long
     "HDBSCAN": hdbscan_,
     "GMM": gmm_,
 }

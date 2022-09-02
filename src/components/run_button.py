@@ -20,17 +20,6 @@ def render(app: Dash, source: DataSource) -> html.Div:
         State(ids.PREPROC_PARAMS_DIV, "children"),
         State(ids.CLUSTERING_DROPDOWN, "value"),
         State(ids.CLUSTERING_PARAMS_DIV, "children"),
-        # background=True,
-        # running=[
-        #     (Output(ids.RUN_BUTTON, "disabled"), True, False),
-        #     (Output(ids.CANCEL_BUTTON, "disabled"), False, True),
-        #     (
-        #         Output(ids.RESPONSE_TEXT_BUTTON, "className"),
-        #         "btn btn-light",
-        #         "btn btn-light",
-        #     ),
-        #     (Output(ids.RESPONSE_TEXT_BUTTON, "children"), "Running", "Finished"),
-        # ],
     )
     def press_button(
         n_clicks: int,
@@ -41,6 +30,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
         clustering_div: dict,
     ) -> tuple[str, str]:
         """Run the preprocessing and clustering using the definded functions and respective parameters"""
+
 
         pipeline = []
 
@@ -103,12 +93,6 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 className="btn btn-primary",
                 style={"margin-right": "10px"},
             ),
-            # html.Button(
-            #     "Stop",
-            #     id=ids.CANCEL_BUTTON,
-            #     className="btn btn-danger",
-            #     style={"margin-right": "10px"},
-            # ),
             html.H5(""),
             html.Div(id=ids.RESPONSE_TEXT_BUTTON, style={"margin-top": "5px"}),
         ]
