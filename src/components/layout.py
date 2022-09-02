@@ -29,8 +29,12 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                 ],
             ),
             html.Hr(),
-            html.H5("Plot"),
-            html.Button("Plot", id=ids.PLOT_BUTTON, className="btn btn-secondary"),
+            html.Button(
+                "Plot",
+                id=ids.PLOT_BUTTON,
+                className="btn btn-primary",
+                style={"width": "120px"},
+            ),
             html.Div(
                 className="graph-container",
                 children=[
@@ -38,21 +42,5 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                     scatter_graph_r.render(app, source),
                 ],
             ),
-            
-            # html.Div(
-            #     className="cluster-container",
-            #     children=[
-            #         # Dropdown 
-            #         # clustering options
-            #     ],
-            # ),
-            # # Button start
-            # html.Div(
-            #     className="results-container",
-            #     children=[
-            #         # Scatter plot 1
-            #         # Scatter plot 2
-            #     ]
-            # )            
         ],
     )

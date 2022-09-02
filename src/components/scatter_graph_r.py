@@ -10,7 +10,6 @@ from . import ids
 
 
 def render(app: Dash, source: DataSource) -> html.Div:
-
     @app.callback(
         Output(ids.SCATTER_GRAPH_R, "figure"),
         Input(ids.PLOT_BUTTON, "n_clicks"),
@@ -51,4 +50,3 @@ def render(app: Dash, source: DataSource) -> html.Div:
             ),
         ]
     )
-

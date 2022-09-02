@@ -1,9 +1,9 @@
 from dash import Dash, dcc, html
-from dash.dependencies import Input, Output, State
 
 from ..data.source import DataSource
 from . import ids
 from .dropdown_helper import to_dropdown_options
+
 
 def render(app: Dash, source: DataSource) -> html.Div:
 

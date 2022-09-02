@@ -2,7 +2,7 @@ from enum import Enum
 
 import hdbscan
 import numpy as np
-from sklearn import cluster
+from sklearn import cluster, mixture
 
 
 def kmeans_(data: np.ndarray, n_clusters: int = 3) -> np.ndarray:
@@ -55,5 +55,33 @@ def hdbscan_(
         cluster_selection_method=cluster_selection_method,
     ).fit(data)
     labels = clusterer.labels_
+
+    return labels
+
+
+class CovarianceType(Enum):
+    FULL = "full"
+    TIED = "tied"
+    DIAG = "diag"
+    SPHERICAL = "spherical"
+
+
+def gmm_(
+    data: np.ndarray,
+    n_components: int = 1,
+    covariance_type: CovarianceType = CovarianceType.FULL,
+) -> np.ndarray:
+    """Apply Gaussian mixture model to the data."""
+
+    clusterer = mixture.GaussianMixture(
+        n_components=n_components,
+        covariance_type=covariance_type,
+        tol=1e-3,
+        reg_covar=1e-6,
+        max_iter=100,
+        n_init=1,
+        init_params="kmeans",
+    ).fit(data)
+    labels = clusterer.predict(data)
 
     return labels

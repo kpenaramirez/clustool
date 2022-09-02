@@ -5,6 +5,7 @@ from .clusterers import (
     dbscan_,
     optics_,
     hdbscan_,
+    gmm_,
 )
 
 PREPROCESSORS = {
@@ -14,6 +15,7 @@ PREPROCESSORS = {
 CLUSTERERS = {
     "KMeans": kmeans_,
     "DBSCAN": dbscan_,
-    "OPTICS": optics_,
+    # "OPTICS": optics_,  # it takes too long
     "HDBSCAN": hdbscan_,
+    "GMM": gmm_,
 }

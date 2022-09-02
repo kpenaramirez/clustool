@@ -4,12 +4,16 @@ from enum import Enum
 
 from dash import dcc, html
 
-from . import ids
 from .dropdown_helper import to_dropdown_options
 from ..processing import PREPROCESSORS, CLUSTERERS
 
+
 def generate_params_divs(function_names: list[str]) -> html.Div:
-    
+    """
+    Automatically Generate the GUI elements for the parameters of the given functions.
+    For that, it uses the function annotations and the default values.
+    """
+
     components = []
     for fn_name in function_names:
 
@@ -49,5 +53,5 @@ def generate_params_divs(function_names: list[str]) -> html.Div:
                 )
 
             components.append(html.Div([html.Label(pname), component]))
-    
+
     return components

@@ -5,6 +5,7 @@ from sklearn.preprocessing import StandardScaler
 Preprocessing functions. No parameters allowed! 
 """
 
+
 class NanValueEncounterError(Exception):
     pass
 

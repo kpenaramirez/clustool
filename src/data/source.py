@@ -9,6 +9,8 @@ import numpy as np
 
 
 Processor = Callable[[np.ndarray], np.ndarray]
+DEFAULT_GROUP: int = -2
+
 
 def compose(*functions: Processor) -> Processor:
     return reduce(lambda f, g: lambda x: g(f(x)), functions)
@@ -21,25 +23,24 @@ class DataSource:
 
     def __post_init__(self):
         self._cols = list(self._data.columns)
-        self._data["result"] = -2
+        self._data["result"] = DEFAULT_GROUP
 
     def _filter_dataframe(self, columns: list[str]) -> pd.DataFrame:
         """Filter the dataframe including selected columns and remove rows that contain NaN"""
-       
+
         df = self._data.copy()
         df = df[columns].dropna()  # Remove nan rows
 
         return df
-    
-    def process(self, columns: list[str], *functions: Processor)-> None:
+
+    def process(self, columns: list[str], *functions: Processor) -> None:
         """Process the data using the functions in the same order as provided"""
-        
-        self._data["result"] = -2  # reset results
+
+        self._data["result"] = DEFAULT_GROUP  # reset results
         preproc_df = self._filter_dataframe(columns)
         processor = compose(*functions)
         result = processor(preproc_df.to_numpy())
         self._data.loc[preproc_df.index.values, "result"] = result
-
 
     @property
     def all_columns(self) -> list[str]:
@@ -48,4 +49,3 @@ class DataSource:
     @property
     def get_data(self) -> pd.DataFrame:
         return self._data.copy()
-
