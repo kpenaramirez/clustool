@@ -7,8 +7,6 @@ from src.data.source import DataSource
 
 DATA_PATH = "./data/sample_data.csv"
 
-
-
 def main() -> None:
 
     # load the data and create the data manager
@@ -24,8 +22,9 @@ def main() -> None:
 
     return app
 
+
 app = main()
 server = app.server
 
 if __name__ == "__main__":
-    app.run_server(host="0.0.0.0", port=8050)
+    app.run_server(host="0.0.0.0", port=8050, debug=True)
