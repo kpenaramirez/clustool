@@ -28,6 +28,8 @@ class DataSource:
     def _filter_dataframe(self, columns: list[str]) -> pd.DataFrame:
         """Filter the dataframe including selected columns and remove rows that contain NaN"""
 
+        print("-----------------")
+        print("columns:", columns)
         df = self._data.copy()
         df = df[columns].dropna()  # Remove nan rows
 
