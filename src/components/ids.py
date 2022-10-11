@@ -1,3 +1,5 @@
+CLUSTER_SELECTION_DROPDOWN = "cluster-selection-dropdown"
+
 COLUMNS_SELECTION_DROPDOWN = "columns-selection-dropdown"
 
 PREPROC_DROPDOWN = "preproc-multi-dropdown"

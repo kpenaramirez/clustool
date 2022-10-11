@@ -19,6 +19,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
     def update_graph(n_clicks: int, xcol: str, ycol: str) -> px.scatter:
         """Update the scatter graph with the new data"""
         df = source.get_data
+        df = df[df.result != -2]  # Do not plot rows mark with -2 (missing data or non selected cluster)
         df["result"] = df["result"].astype(str)
         return px.scatter(
             df,
@@ -39,7 +40,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
             dcc.Dropdown(
                 id=ids.GRAPH_XAXIS_DROPDOWN_R,
                 options=to_dropdown_options(source.all_columns),
-                value=source.all_columns[3],
+                value=source.all_columns[2],
                 multi=False,
                 placeholder="Select X axis",
             ),

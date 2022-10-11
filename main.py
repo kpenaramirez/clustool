@@ -5,7 +5,7 @@ from src.components.layout import create_layout
 from src.data.loader import load_input_data
 from src.data.source import DataSource
 
-DATA_PATH = "./data/sample_data.csv"
+DATA_PATH = "./data/clusters.csv"
 
 def main() -> None:
 

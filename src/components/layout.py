@@ -1,5 +1,6 @@
 from dash import Dash, html
 from src.components import (
+    cluster_selection_dropdown,
     column_dropdown,
     ids,
     preproc_selector,
@@ -19,6 +20,9 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
         children=[
             html.H1(app.title),
             html.Hr(),
+            html.Div(
+                [cluster_selection_dropdown.render(app, source)],
+            ),
             html.Div(
                 className="dropdown-container",
                 children=[

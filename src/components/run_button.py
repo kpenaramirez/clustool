@@ -29,6 +29,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
         Output('dynamic-button-container', 'children'),
         Input(ids.RUN_BUTTON, "n_clicks"),
         State(ids.COLUMNS_SELECTION_DROPDOWN, "value"),
+        State(ids.CLUSTER_SELECTION_DROPDOWN, "value"),
         State(ids.PREPROC_DROPDOWN, "value"),
         State(ids.PREPROC_PARAMS_DIV, "children"),
         State(ids.CLUSTERING_DROPDOWN, "value"),
@@ -38,6 +39,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
     def press_button(
         n_clicks: int,
         columns: list[str],
+        cluster: str,
         preproc_selection: str,
         preproc_div: dict,
         clustering_selection: str,
@@ -62,7 +64,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
 
         if n_clicks:
             
-            if columns and clustering_selection:
+            if columns and cluster and clustering_selection:
 
                 # Preprocessing
                 if preproc_selection:
@@ -97,7 +99,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
 
                 # Run the pipeline
                 try:
-                    source.process(columns, *pipeline)
+                    source.process(columns, cluster, *pipeline)
                     return f"Success!", "alert alert-success", children
                 except Exception as e:
                     return f"Error: {e}", "alert alert-danger", children

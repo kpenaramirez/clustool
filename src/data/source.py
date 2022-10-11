@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from functools import partial, reduce
+from datetime import datetime
 from typing import Callable
 
 import pandas as pd
@@ -25,29 +26,39 @@ class DataSource:
         self._cols = list(self._data.columns)
         self._data["result"] = DEFAULT_GROUP
 
-    def _filter_dataframe(self, columns: list[str]) -> pd.DataFrame:
+    def _filter_dataframe(self, columns: list[str], cluster: str) -> pd.DataFrame:
         """Filter the dataframe including selected columns and remove rows that contain NaN"""
 
-        print("-----------------")
-        print("columns:", columns)
         df = self._data.copy()
+        df = df.query("Cluster == @cluster")  # Select only rows with the selected cluster
         df = df[columns].dropna()  # Remove nan rows
 
         return df
 
-    def process(self, columns: list[str], *functions: Processor) -> None:
+    def process(self, columns: list[str], cluster: str, *functions: Processor) -> None:
         """Process the data using the functions in the same order as provided"""
 
+        print(f"{datetime.now()} Processing data {cluster}")
         self._data["result"] = DEFAULT_GROUP  # reset results
-        preproc_df = self._filter_dataframe(columns)
+        preproc_df = self._filter_dataframe(columns, cluster)
         processor = compose(*functions)
         result = processor(preproc_df.to_numpy())
         self._data.loc[preproc_df.index.values, "result"] = result
 
     @property
     def all_columns(self) -> list[str]:
-        return self._cols
+
+        list_of_columns = self._cols.copy()
+        for element in ["Cluster", "probs_final"]:
+            if element in list_of_columns:
+                list_of_columns.remove(element)
+        
+        return list_of_columns
 
     @property
     def get_data(self) -> pd.DataFrame:
         return self._data.copy()
+    
+    @property
+    def all_cluster_names(self) -> list[str]:
+        return self._data["Cluster"].unique().tolist()
