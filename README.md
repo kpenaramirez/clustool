@@ -3,6 +3,12 @@ App for clustering data using unsupervised machine learning
 
 ![image](assets/screenshot.png)
 
+## How to run the app
+1. `pip install -r requirements.txt`
+2. `python main.py`
+3. Go to http://0.0.0.0:8000/
+
+
 ## How to build and run the app using docker
 
 ```docker build -t clustool .```  
