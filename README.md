@@ -13,7 +13,7 @@ App for clustering data using unsupervised machine learning.
 
 ```docker build -t clustool .```  
 
-```docker run -d -p 8000:8000 clustool```
+```docker run -d -p 8000:8000 --restart unless-stopped clustool```
 
 ## Other useful docker commands for reference
 
