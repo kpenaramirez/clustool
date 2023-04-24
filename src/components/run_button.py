@@ -116,7 +116,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
 
     return html.Div(
         children=[
-            html.H5("Excecute"),
+            html.H5("Execute"),
             html.Div(
                 id='dynamic-button-container',
                 children=[

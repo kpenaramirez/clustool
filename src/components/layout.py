@@ -1,4 +1,4 @@
-from dash import Dash, html
+from dash import Dash, html, dcc
 from src.components import (
     cluster_selection_dropdown,
     column_dropdown,
@@ -18,8 +18,8 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
     return html.Div(
         className="app-div",
         children=[
-            html.H1(app.title),
-            html.Hr(),
+            dcc.Markdown(f"# {app.title}", mathjax=True),
+            dcc.Markdown(f"Peña Ramírez et al. (2020 and 2021)"),
             html.Div(
                 [cluster_selection_dropdown.render(app, source)],
             ),
