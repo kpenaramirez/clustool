@@ -12,7 +12,7 @@ from astropy import units as u
 
 DATA_DIR = Path("/home/jorge/Documents/data/combi/")
 OUTPUT_DIR = Path("data/input/")
-TIMES_R50 = 2.0
+TIMES_R50 = 1.5
 
 @dataclass
 class StarCluster:
