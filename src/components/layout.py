@@ -19,7 +19,8 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
         className="app-div",
         children=[
             dcc.Markdown(f"# {app.title}", mathjax=True),
-            dcc.Markdown(f"Peña Ramírez et al. (2020 and 2021)"),
+            dcc.Markdown(f"Reanalize a couple of open clusters studied in Peña Ramírez et al. (2021, 2022) using the scikit-
+earn suite:"),
             html.Div(
                 [cluster_selection_dropdown.render(app, source)],
             ),
